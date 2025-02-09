@@ -14,11 +14,9 @@ RUN dnf install -y util-linux && dnf clean all && \
 COPY --from=rhel9 \
   /usr/src/multus-cni/bin/thin_entrypoint \
   /usr/src/multus-cni/bin/multus \
-  /usr/src/multus-cni/bin
+  /usr/src/multus-cni/bin/
 
 LABEL io.k8s.display-name="Multus CNI for MicroShift" \
       io.k8s.description="This is an optional component of MicroShift and provides a meta CNI plugin." \
-      io.openshift.tags="microshift" \
-      maintainer="Doug Smith <dosmith@redhat.com>"
-
+      io.openshift.tags="microshift" 
 ENTRYPOINT ["/usr/src/multus-cni/bin/thin_entrypoint"]
