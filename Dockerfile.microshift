@@ -2,6 +2,9 @@
 FROM registry.ci.openshift.org/openshift/release:rhel-9-release-golang-1.21-openshift-4.16 AS rhel9
 ADD . /usr/src/multus-cni
 WORKDIR /usr/src/multus-cni
+RUN rm .git
+COPY gitinfo /usr/src/multus-cni/.git
+RUN  sed -i '/worktree/d' .git/config
 ENV CGO_ENABLED=1
 ENV GO111MODULE=off
 ENV VERSION=rhel9 COMMIT=unset
